@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
 
 const WelcomeScreen: React.FC = () => {
   const navigation = useNavigation();
@@ -20,6 +19,7 @@ const WelcomeScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      <Image source={require('../assets/comulogo.png')} style={styles.logo} />
       <Text style={styles.title}>ÇOMÜ Atık Yönetimi Sistemi</Text>
       <TouchableOpacity style={styles.button} onPress={handleStudentLogin}>
         <Text style={styles.buttonText}>Öğrenci Girişi</Text>
@@ -36,6 +36,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  logo: {
+    width: 200,
+    height: 200,
+    marginBottom: 20,
   },
   title: {
     fontSize: 24,
