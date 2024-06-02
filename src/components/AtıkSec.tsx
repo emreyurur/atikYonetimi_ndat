@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
 const AtikSec: React.FC<{ onAtikGiris: (atikCesidi: string, atikMiktari: number) => void }> = ({ onAtikGiris }) => {
   const [atikCesidi, setAtikCesidi] = useState('');
@@ -12,11 +12,21 @@ const AtikSec: React.FC<{ onAtikGiris: (atikCesidi: string, atikMiktari: number)
         onAtikGiris(atikCesidi, miktar);
         setAtikCesidi('');
         setAtikMiktari('');
+        Alert.alert(
+          "Atık Girişi",
+          `Atık Çeşidi: ${atikCesidi}, Atık Miktarı: ${atikMiktari} kg`,
+          [
+            {
+              text: "OK",
+              onPress: () => Alert.alert('Bilgiler Sürdürülebilirlik Ofisine gönderildi!'),
+            }
+          ]
+        );
       } else {
-        alert('Atık miktarı 1kg\'den fazla olmalıdır.');
+        Alert.alert('Atık miktarı 1kg\'den fazla olmalıdır.');
       }
     } else {
-      alert('Lütfen geçerli bir atık çeşidi ve miktarı girin.');
+      Alert.alert('Lütfen geçerli bir atık çeşidi ve miktarı girin.');
     }
   };
 

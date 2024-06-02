@@ -1,31 +1,30 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // React Navigation kullanıyorsanız
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const OgrenciLoginComponent: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigation = useNavigation(); // Navigation nesnesine erişim sağlayın
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const navigation = useNavigation();
 
   const handleLogin = () => {
-    // Boş alan kontrolü
-    if (!email.trim() || !password.trim()) {
-      alert('Lütfen tüm alanları doldurun.');
+    if (email.trim() === '' || password.trim() === '') {
+      Alert.alert('Hata', 'Lütfen tüm alanları doldurun.');
       return;
     }
-
     // Giriş işlemleri burada gerçekleştirilecek
     console.log('Email:', email);
     console.log('Password:', password);
 
-    // Giriş başarılı olduğunda OgrenciScreen'e yönlendir
+    // Başarılı giriş işlemi sonrası yönlendirme
     navigation.navigate('OgrenciBinaSecmeScreen');
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>ÇOMÜ E-Maili Öğrenci ile Girişi</Text>
+      <Text style={styles.title}>ÇOMÜ E-Maili ile Öğrenci Girişi</Text>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -34,13 +33,24 @@ const OgrenciLoginComponent: React.FC = () => {
           value={email}
           onChangeText={setEmail}
         />
-        <TextInput
-          style={styles.input}
-          placeholder="Şifre"
-          secureTextEntry={true}
-          value={password}
-          onChangeText={setPassword}
-        />
+        <View style={styles.passwordContainer}>
+          <TextInput
+            style={styles.passwordInput}
+            placeholder="Şifre"
+            secureTextEntry={!isPasswordVisible}
+            value={password}
+            onChangeText={setPassword}
+          />
+          <TouchableOpacity
+            style={styles.iconContainer}
+            onPress={() => setIsPasswordVisible(!isPasswordVisible)}
+          >
+            <Image
+              source={require('../assets/showpassword_icon.png')}
+              style={styles.icon}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
         <Text style={styles.loginButtonText}>Giriş Yap</Text>
@@ -73,6 +83,28 @@ const styles = StyleSheet.create({
     fontSize: 16,
     borderWidth: 0.5,
   },
+  passwordContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+  },
+  passwordInput: {
+    flex: 1,
+    backgroundColor: '#f2f2f2',
+    padding: 15,
+    borderRadius: 8,
+    fontSize: 16,
+    borderWidth: 0.5,
+  },
+  iconContainer: {
+    position: 'absolute',
+    right: 10,
+    padding: 10,
+  },
+  icon: {
+    width: 16,
+    height: 16,
+  },
   loginButton: {
     backgroundColor: 'blue',
     padding: 15,
@@ -88,7 +120,3 @@ const styles = StyleSheet.create({
 });
 
 export default OgrenciLoginComponent;
-function alert(arg0: string) {
-  throw new Error('Function not implemented.');
-}
-
