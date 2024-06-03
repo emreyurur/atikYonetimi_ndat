@@ -14,11 +14,10 @@ const OgrenciLoginComponent: React.FC = () => {
       Alert.alert('Hata', 'Lütfen tüm alanları doldurun.');
       return;
     }
-    // Giriş işlemleri burada gerçekleştirilecek
+    
     console.log('Email:', email);
     console.log('Password:', password);
 
-    // Başarılı giriş işlemi sonrası yönlendirme
     navigation.navigate('OgrenciBinaSecmeScreen');
   };
 
@@ -26,17 +25,19 @@ const OgrenciLoginComponent: React.FC = () => {
     <View style={styles.container}>
       <Text style={styles.title}>ÇOMÜ E-Maili ile Öğrenci Girişi</Text>
       <View style={styles.inputContainer}>
+        <Text style={styles.label}>E-posta</Text>
         <TextInput
           style={styles.input}
-          placeholder="E-posta"
+          placeholder="@comu.edu uzantılı e-posta adresi"
           keyboardType="email-address"
           value={email}
           onChangeText={setEmail}
         />
+        <Text style={styles.label}>Parola</Text>
         <View style={styles.passwordContainer}>
           <TextInput
             style={styles.passwordInput}
-            placeholder="Şifre"
+            placeholder="UBYS Parolası"
             secureTextEntry={!isPasswordVisible}
             value={password}
             onChangeText={setPassword}
@@ -69,11 +70,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 30,
+    color:"black"
   },
   inputContainer: {
     width: '100%',
     marginBottom: 20,
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 8,
+    fontWeight: 'bold',
+    color:"black",
+    textAlign:"center",
   },
   input: {
     backgroundColor: '#f2f2f2',

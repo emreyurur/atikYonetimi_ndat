@@ -7,13 +7,11 @@ const WelcomeScreen: React.FC = () => {
 
   const handleStudentLogin = () => {
     console.log('Öğrenci girişi');
-    // Öğrenci ekranına git
     navigation.navigate('OgrenciLoginScreen');
   };
 
   const handleAcademicLogin = () => {
     console.log('Akademisyen girişi');
-    // Akademisyen ekranına git
     navigation.navigate('AkademisyenLoginScreen');
   };
 

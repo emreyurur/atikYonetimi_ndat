@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const AkademisyenLoginComponent: React.FC = () => {
+const OgrenciLoginComponent: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -14,7 +14,7 @@ const AkademisyenLoginComponent: React.FC = () => {
       Alert.alert('Hata', 'Lütfen tüm alanları doldurun.');
       return;
     }
-    // Giriş işlemleri burada gerçekleştirilecek
+    
     console.log('Email:', email);
     console.log('Password:', password);
 
@@ -26,17 +26,19 @@ const AkademisyenLoginComponent: React.FC = () => {
     <View style={styles.container}>
       <Text style={styles.title}>ÇOMÜ E-Maili ile Akademisyen Girişi</Text>
       <View style={styles.inputContainer}>
+        <Text style={styles.label}>E-posta</Text>
         <TextInput
           style={styles.input}
-          placeholder="E-posta"
+          placeholder="@comu.edu.tr uzantılı e-posta adresi"
           keyboardType="email-address"
           value={email}
           onChangeText={setEmail}
         />
+        <Text style={styles.label}>Parola</Text>
         <View style={styles.passwordContainer}>
           <TextInput
             style={styles.passwordInput}
-            placeholder="Şifre"
+            placeholder="UBYS Parolası"
             secureTextEntry={!isPasswordVisible}
             value={password}
             onChangeText={setPassword}
@@ -69,11 +71,20 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 30,
+    color:"black",
+    textAlign:"center"
   },
   inputContainer: {
     width: '100%',
     marginBottom: 20,
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 8,
+    fontWeight: 'bold',
+    color:"black",
+    textAlign:"center",
   },
   input: {
     backgroundColor: '#f2f2f2',
@@ -119,4 +130,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AkademisyenLoginComponent;
+export default OgrenciLoginComponent;

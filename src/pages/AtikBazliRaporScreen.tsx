@@ -25,12 +25,12 @@ const AtikBazliRaporScreen: React.FC = () => {
 
   const renderRapor = () => {
     const total = calculateTotal();
-    const colors = ['#ff7f0e', '#2ca02c', '#1f77b4', '#d62728']; // Sabit renkler
+    const colors = ['#ff7f0e', '#2ca02c', '#1f77b4', '#d62728'];
     return atikler.map((atik, index) => ({
       tur: atik.tur,
       miktar: atik.miktar,
       yuzde: parseFloat(calculatePercentage(atik.miktar, total)),
-      color: colors[index], // Her atık türü için sabit bir renk belirleme
+      color: colors[index],
     }));
   };
 

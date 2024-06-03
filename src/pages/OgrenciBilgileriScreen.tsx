@@ -10,16 +10,18 @@ interface Student {
 }
 
 const students: Student[] = [
-  { id: '1', name: 'Ali Veli', faculty: 'Mühendislik Fakültesi', department: 'Bilgisayar Mühendisliği', schoolNumber: '123456' },
-  { id: '2', name: 'Ayşe Fatma', faculty: 'Fen Fakültesi', department: 'Fizik', schoolNumber: '654321' },
-  // Add more student data as needed
+  { id: '1', name: 'Emre Yürür', faculty: 'Mühendislik Fakültesi', department: 'Bilgisayar Mühendisliği', schoolNumber: '210401066' },
+  { id: '2', name: 'Nur Sultan Şeyhanlıoğlu', faculty: 'Mühendislik Fakültesi', department: 'Bilgisayar Mühendisliği', schoolNumber: '200401067' },
+  { id: '3', name: 'Salih Karabacak', faculty: 'Mühendislik Fakültesi', department: 'Bilgisayar Mühendisliği', schoolNumber: '200401075' },
+  { id: '4', name: 'Elif Çağıl', faculty: 'Mühendislik Fakültesi', department: 'Bilgisayar Mühendisliği', schoolNumber: '210401030' },
+ 
 ];
 
 const OgrenciBilgileriScreen: React.FC = () => {
   const [studentList, setStudentList] = useState<Student[]>([]);
 
   useEffect(() => {
-    // Fetch or use static data for students
+    
     setStudentList(students);
   }, []);
 
@@ -31,6 +33,9 @@ const OgrenciBilgileriScreen: React.FC = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View style={styles.studentContainer}>
+             <Text style={styles.row}>
+              <Text style={styles.label}>Okul Numarası:</Text> <Text style={styles.value}>{item.schoolNumber}</Text>
+            </Text>
             <Text style={styles.row}>
               <Text style={styles.label}>İsim:</Text> <Text style={styles.value}>{item.name}</Text>
             </Text>
@@ -39,9 +44,6 @@ const OgrenciBilgileriScreen: React.FC = () => {
             </Text>
             <Text style={styles.row}>
               <Text style={styles.label}>Bölüm:</Text> <Text style={styles.value}>{item.department}</Text>
-            </Text>
-            <Text style={styles.row}>
-              <Text style={styles.label}>Okul Numarası:</Text> <Text style={styles.value}>{item.schoolNumber}</Text>
             </Text>
           </View>
         )}
